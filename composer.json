@@ -1,0 +1,12 @@
+{
+  "name": "nzvin/task-manager",
+  "description": "Console task manager",
+  "autoload": {
+    "psr-4": {
+      "TaskManager\\": "src/"
+    }
+  },
+  "require": {
+    "ext-readline": "*"
+  }
+}
