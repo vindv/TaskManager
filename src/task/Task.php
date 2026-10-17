@@ -10,7 +10,7 @@ class Task
 
     public function __construct(int $id, string $name, bool $completed = false)
     {
-        if ($id <= 0) {
+        if($id <= 0) {
             throw new \InvalidArgumentException("id must be a positive integer");
         }
 
@@ -31,7 +31,7 @@ class Task
 
     public function setName(string $name): void
     {
-        if (trim($name) === "") {
+        if(trim($name) === "") {
             throw new \InvalidArgumentException("name can't be empty");
         }
 

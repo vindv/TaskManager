@@ -17,24 +17,24 @@ class TaskRepository
         $this->errors = [];
         $tasks = [];
 
-        if (!file_exists($this->filePath)) {
+        if(!file_exists($this->filePath)) {
             return $tasks;
         }
 
         $rawTasks = json_decode(file_get_contents($this->filePath), true);
 
-        if (!is_array($rawTasks)) {
+        if(!is_array($rawTasks)) {
             return $tasks;
         }
 
-        foreach ($rawTasks as $rawTask) {
-            if (!is_array($rawTask)) {
+        foreach($rawTasks as $rawTask) {
+            if(!is_array($rawTask)) {
                 continue;
             }
 
-            try {
+            try{
                 $tasks[] = Task::fromArray($rawTask);
-            } catch (\InvalidArgumentException | \TypeError $e) {
+            }catch(\InvalidArgumentException | \TypeError $e) {
                 $this->errors[] = $e->getMessage();
             }
         }
@@ -47,7 +47,7 @@ class TaskRepository
     {
         $data = [];
 
-        foreach ($tasks as $task) {
+        foreach($tasks as $task) {
             $data[] = $task->toArray();
         }
 

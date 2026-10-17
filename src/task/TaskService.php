@@ -2,8 +2,6 @@
 
 namespace TaskManager\task;
 
-
-
 class TaskService
 {
     private TaskRepository $repository;
@@ -32,8 +30,8 @@ class TaskService
 
     public function find(int $id): ?Task
     {
-        foreach ($this->tasks as $task) {
-            if ($task->getId() === $id) {
+        foreach($this->tasks as $task) {
+            if($task->getId() === $id) {
                 return $task;
             }
         }
@@ -62,8 +60,8 @@ class TaskService
     {
         $remainingTasks = [];
 
-        foreach ($this->tasks as $task) {
-            if ($task->getId() !== $id) {
+        foreach($this->tasks as $task) {
+            if($task->getId() !== $id) {
                 $remainingTasks[] = $task;
             }
         }
@@ -76,8 +74,8 @@ class TaskService
     {
         $maxId = 0;
 
-        foreach ($this->tasks as $task) {
-            if ($task->getId() > $maxId) {
+        foreach($this->tasks as $task) {
+            if($task->getId() > $maxId) {
                 $maxId = $task->getId();
             }
         }

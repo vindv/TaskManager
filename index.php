@@ -9,7 +9,7 @@ use TaskManager\task\TaskService;
 $repository = new TaskRepository(__DIR__ . '/tasks.json');
 $taskService = new TaskService($repository);
 
-foreach ($repository->getErrors() as $loadError) {
+foreach($repository->getErrors() as $loadError) {
     Console::warning($loadError);
 }
 
