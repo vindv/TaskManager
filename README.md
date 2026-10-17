@@ -15,7 +15,7 @@ I built it step by step to practice object-oriented PHP: classes, validation, ex
 
 ## Requirements
 
-- PHP 8.0 or higher, with the `readline` extension
+- PHP 8.1 or higher, with the `readline` extension
 - [Composer](https://getcomposer.org/)
 
 ## Installation

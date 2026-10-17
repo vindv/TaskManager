@@ -25,6 +25,9 @@ class TaskRepository
         if($content === false) {
             throw new \RuntimeException("Could not read " . $this->filePath);
         }
+        if(trim($content) === "") {
+            return [];
+        }
 
         try {
             $rawTasks = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
@@ -64,11 +67,25 @@ class TaskRepository
         try {
             $encodedTasks = json_encode($data, JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
         }catch(\JsonException $e) {
-            throw new \RuntimeException("Could not encode tasks as Json", 0, $e);
+            throw new \RuntimeException("Could not encode tasks as JSON", 0, $e);
         }
 
-        if(file_put_contents($this->filePath, $encodedTasks, LOCK_EX) === false) {
-            throw new \RuntimeException("Could not write " . $this->filePath);
+        $tempPath = $this->filePath . ".tmp";
+
+        try{
+            $bytesWritten = file_put_contents($tempPath, $encodedTasks, LOCK_EX);
+
+            if($bytesWritten === false || $bytesWritten !== strlen($encodedTasks)) {
+                throw new \RuntimeException("Could not write " . $tempPath);
+            }
+
+            if(!rename($tempPath, $this->filePath)) {
+                throw new \RuntimeException("Could not replace " . $this->filePath);
+            }
+        }finally{
+            if(file_exists($tempPath)) {
+                unlink($tempPath);
+            }
         }
     }
 
