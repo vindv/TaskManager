@@ -1,6 +1,6 @@
 <?php
 
-namespace TaskManager\task\task;
+namespace TaskManager\task;
 
 class TaskRepository
 {

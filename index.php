@@ -3,7 +3,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use TaskManager\Console;
-use TaskManager\task\task\TaskRepository;
+use TaskManager\task\TaskRepository;
 use TaskManager\task\TaskService;
 
 $repository = new TaskRepository(__DIR__ . '/tasks.json');

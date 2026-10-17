@@ -3,8 +3,6 @@
 namespace TaskManager\task;
 
 
-use TaskManager\task\task\Task;
-use TaskManager\task\task\TaskRepository;
 
 class TaskService
 {
